@@ -1,0 +1,362 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    text-align: center;
+    font-family: Arial, sans-serif;
+
+    background:
+        radial-gradient(circle at 10% 15%, #d9d2ff 0%, transparent 25%),
+        radial-gradient(circle at 90% 15%, #ffd1df 0%, transparent 25%),
+        radial-gradient(circle at 10% 90%, #ffe3a3 0%, transparent 28%),
+        radial-gradient(circle at 90% 90%, #c9e2ff 0%, transparent 28%),
+        #fff8f8;
+
+   
+}
+
+h1 {
+    margin-top: 30px;
+    font-size: 42px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #7c3aed, #ec4899, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#turn {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 15px;
+}
+#turn.win-message {
+    animation: winMessage 0.6s ease;
+}
+
+@keyframes winMessage {
+    0% {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+
+    70% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Game Mode Buttons */
+
+.game-mode {
+    margin: 20px 0;
+}
+
+.game-mode button {
+    padding: 11px 18px;
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    color: white;
+    transition: 0.2s ease;
+}
+
+.game-mode button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(139, 92, 246, 0.3);
+}
+
+/* Scoreboard */
+
+.scoreboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    margin: 20px auto;
+    padding: 14px 30px;
+    width: fit-content;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(80, 70, 150, 0.12);
+}
+
+.scoreboard p {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+.score-x {
+    color: #2563eb;
+    font-size: 22px;
+}
+.score-o{
+    color: #dc2626;
+    font-size: 22px;
+}
+
+
+/* Board */
+
+.board {
+    width: 300px;
+    margin: 30px auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.85);
+    border: radius 16px;
+    box-shadow: 0 10px 30px rgba(80, 70, 150, 0.15);
+}
+
+.cell {
+    height: 100px;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    background: white;
+    border: 2px solid #333;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+/* X and O styling */
+.cell:disabled {
+    cursor:default;
+}
+
+.cell:hover {
+    background: #eeeeee;
+    transform: scale(1.03);
+}
+
+/* Winning Cells */
+
+.winner {
+    background-color: lightgreen;
+    transform: scale(1.05);
+    font-weight: bold;
+}
+
+/* Restart Button */
+
+#restart {
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    transition: 0.2s ease;
+}
+
+#restart:hover {
+    transform: scale(1.05);
+}
+.cell.X{
+    color: #2163f0; 
+}
+.cell.O{
+    color: #e62a2a;
+}
+.cell.X,
+.cell.O{
+    animation: pop 0.2s ease;
+}
+@keyframes pop {
+    0%{
+        transform: scale(0.5);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+/* Mobile Responsive */
+
+@media (max-width: 500px) {
+
+    h1 {
+        font-size: 32px;
+        margin-top: 20px;
+    }
+
+    #turn {
+        font-size: 18px;
+    }
+
+    .game-mode button {
+        padding: 9px 12px;
+        font-size: 14px;
+    }
+
+    .scoreboard {
+        gap: 15px;
+        padding: 12px 25px;
+        flex-wrap: wrap;
+    }
+
+    .scoreboard p {
+        font-size: 16px;
+        margin: 5px;
+    }
+
+    .board {
+        width: 90%;
+        max-width: 300px;
+        gap: 5px;
+    }
+
+    .cell {
+        height: 90px;
+        font-size: 35px;
+    }
+
+    #restart {
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+}
+/* Final UI Polish */
+
+.board {
+    padding: 10px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.game-mode button,
+#restart {
+    transition: 0.2s ease;
+}
+
+.game-mode button:hover,
+#restart:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.winner {
+    animation: winnerPop 0.5s ease forwards,
+               winnerGlow 1s ease-in-out 0.5s infinite alternate;
+    z-index: 2;
+}
+
+@keyframes winnerPop {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1.08);
+    }
+}
+
+@keyframes winnerGlow {
+    from {
+        box-shadow: 0 0 5px rgba(34, 197, 94, 0.4);
+    }
+
+    to {
+        box-shadow: 0 0 20px rgba(34, 197, 94, 0.9);
+    }
+}
+
+/* Button click effect */
+.game-mode button:active,
+#restart:active {
+    transform: scale(0.95);
+    box-shadow: none;
+}
+#winner-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+
+    padding: 30px 50px;
+    border-radius: 20px;
+
+    background: rgba(122, 203, 247, 0.9);
+    font-size: 42px;
+    font-weight: 800;
+    color: #7c3aed;
+
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+
+    z-index: 1000;
+}
+
+#winner-popup.show {
+    display: block;
+    animation: winnerPop 0.7s ease forwards;
+}
+
+@keyframes winnerPop {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+    }
+
+    60% {
+        transform: translate(-50%, -50%) scale(1.25);
+    }
+
+    80% {
+        transform: translate(-50%, -50%) scale(0.95);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.difficulty {
+    margin: 10px 0 20px;
+}
+
+.difficulty button {
+    padding: 9px 18px;
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    background: linear-gradient(135deg, #96dbf8);
+    color: #333;
+    transition: 0.2s ease;
+}
+
+.difficulty button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+}
+.difficulty button:active,
+#difficulty:active {
+    transform: scale(0.95);
+    box-shadow: none;
+}
+.difficulty button.active{
+    background: linear-gradient(135deg, #5456f0);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+}
+
+
+
